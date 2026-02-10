@@ -1,0 +1,61 @@
+QID,Subject,Question,OptionA,OptionB,OptionC,OptionD,Answer,Marks,Year
+1,Algorithms,What is the time complexity of Merge Sort?,O(n),O(log n),O(n log n),O(n^2),C,2,2023
+2,Data Structures,Which data structure is used for implementing recursion?,Queue,Stack,Array,Linked List,B,1,2022
+3,DBMS,Which normal form eliminates transitive dependency?,1NF,2NF,3NF,BCNF,C,2,2021
+4,OS,Which of the following is a non-preemptive scheduling algorithm?,Round Robin,SJF,FCFS,Priority,C,1,2023
+5,Theory of Computation,Pumping lemma is used to prove?,Regular languages are finite,Language is not regular,Language is context-free,Turing decidable,B,2,2020
+6,Computer Networks,Which protocol is used for email?,HTTP,SMTP,FTP,IMAP,B,1,2022
+7,Digital Logic,Which logic gate is called a universal gate?,AND,OR,NOT,NAND,D,1,2021
+8,Compiler Design,Which phase of compiler removes left recursion?,Lexical Analysis,Syntax Analysis,Semantic Analysis,Parsing,B,2,2023
+9,Operating System,Thrashing occurs due to?,High CPU utilization,High paging activity,Deadlock,Fragmentation,B,2,2019
+10,Maths,"If f(x)=x^2, then derivative f’(x)= ?",2x,x,2x^2,x^2,A,1,2023
+11,Algorithms,Which of the following is a divide and conquer algorithm?,Bubble Sort,Merge Sort,Selection Sort,Counting Sort,B,2,2021
+12,Algorithms,The best case time complexity of Quick Sort is?,O(n log n),O(n^2),O(log n),O(n),A,2,2020
+13,Data Structures,Which of the following is not a balanced tree?,AVL Tree,Red-Black Tree,B-Tree,Binary Search Tree,D,1,2022
+14,Data Structures,What is the maximum number of children in a B-Tree of order m?,m,m+1,m-1,2m,A,2,2021
+15,DBMS,Which of the following is not a type of join in SQL?,Inner Join,Outer Join,Self Join,Cross Join,D,1,2020
+16,DBMS,"In relational algebra, the selection operator is denoted by?",σ,π,ρ,τ,A,2,2019
+17,OS,Which of the following is a preemptive scheduling algorithm?,FCFS,SJF (non-preemptive),Round Robin,Priority (non-preemptive),C,2,2021
+18,OS,The Banker’s Algorithm is used for?,Deadlock prevention,Deadlock avoidance,Deadlock detection,Mutual exclusion,B,2,2020
+19,Theory of Computation,Which of the following languages is regular?,{a^n b^n | n>=0},"{a^i b^j | i,j>=0}",{a^n b^n c^n | n>=0},"{ww^R | w in {a,b}*}",B,2,2021
+20,Theory of Computation,A Pushdown Automaton is more powerful than?,NFA,Turing Machine,DFA,Both DFA and NFA,D,2,2020
+21,Computer Networks,Which layer of OSI model deals with end-to-end communication?,Network,Transport,Data Link,Application,B,2,2021
+22,Computer Networks,Which of the following uses connection-oriented communication?,UDP,IP,TCP,ARP,C,1,2022
+23,Digital Logic,The Boolean expression A+AB is equivalent to?,A,B,A’B,AB,A,1,2019
+24,Digital Logic,How many flip-flops are needed for a mod-16 counter?,2,3,4,5,C,2,2020
+25,Compiler Design,Which of the following is a bottom-up parsing technique?,Recursive Descent,LL(1) Parsing,LR Parsing,Predictive Parsing,C,2,2021
+26,Compiler Design,Intermediate code generation is done for?,Portability,Optimization,Parsing,Lexical Analysis,A,2,2019
+27,Maths,The Laplace Transform of 1 is?,1,s,1/s,s^2,C,2,2020
+28,Maths,The eigenvalues of identity matrix are?,All zeros,All ones,Both ones and zeros,None,B,1,2021
+29,Algorithms,Which of the following problems can be solved using dynamic programming?,Sorting,Matrix Chain Multiplication,Finding Prime Numbers,Binary Search,B,2,2021
+30,Algorithms,Dijkstra’s algorithm cannot handle?,Negative edges,Positive edges,Graphs with cycles,Undirected graphs,A,2,2020
+31,Data Structures,Which hashing technique resolves collision using linked lists?,Open addressing,Chaining,Double hashing,Quadratic probing,B,1,2019
+32,Data Structures,"In a max-heap, the largest element is found at?",Leaf node,Root,Middle,Last element,B,1,2020
+33,DBMS,Which SQL command is used to remove a relation?,DELETE,REMOVE,DROP,CLEAR,C,2,2022
+34,DBMS,Which of the following ensures atomicity in DBMS?,Normalization,Transaction,Deadlock,Schedule,B,2,2021
+35,OS,The critical section problem occurs in?,Single process systems,Multi-process systems,Batch systems,Real-time systems,B,2,2020
+36,OS,Which one is a disk scheduling algorithm?,FIFO,SCAN,Round Robin,SJF,B,2,2021
+37,Theory of Computation,A Turing machine can simulate?,PDA,FA,RAM,All of these,D,2,2019
+38,Theory of Computation,Which grammar generates regular languages?,Type 0,Type 1,Type 2,Type 3,D,2,2021
+39,Computer Networks,What is the maximum length of IPv4 address in bits?,16,32,64,128,B,1,2020
+40,Computer Networks,Which of the following uses packet switching?,Telephone network,Circuit switching,Internet,None,C,2,2021
+41,Digital Logic,The hexadecimal number (2A)16 is equal to?,42,32,52,25,A,1,2020
+42,Digital Logic,The complement of A’B + AB’ is?,A⊕B,A B,A+B,(A+B)’,A,2,2021
+43,Compiler Design,Lexical analyzer uses?,Context-free grammar,Regular expressions,Context-sensitive grammar,Unrestricted grammar,B,2,2020
+44,Compiler Design,Which one is not an intermediate representation?,Syntax tree,Three-address code,Postfix notation,Machine code,D,2,2021
+45,Maths,"If A is 3x3 matrix, then rank(A) ≤ ?",1,2,3,4,C,1,2019
+46,Maths,"If P(E)=0.6 and P(F)=0.5 and E,F independent, then P(E∩F)=?",0.1,0.3,0.5,0.6,B,2,2020
+47,Algorithms,Kruskal’s algorithm is used for?,Shortest Path,Minimum Spanning Tree,Maximum Flow,Sorting,B,2,2021
+48,Algorithms,Which of the following is not a stable sort?,Merge Sort,Bubble Sort,Quick Sort,Insertion Sort,C,2,2020
+49,Data Structures,Which data structure is best for implementing priority queue?,Queue,Heap,Stack,Array,B,2,2021
+50,Data Structures,The height of a complete binary tree with n nodes is?,O(n),O(log n),O(n log n),O(1),B,2,2020
+51,DBMS,Which isolation level avoids phantom read?,Read Uncommitted,Read Committed,Repeatable Read,Serializable,D,2,2021
+52,DBMS,Which of the following is a DDL command?,INSERT,DELETE,CREATE,UPDATE,C,2,2020
+53,OS,Which of the following is not a page replacement algorithm?,FIFO,LRU,Optimal,Round Robin,D,2,2019
+54,OS,"In UNIX, fork() system call is used to?",Terminate a process,Create a process,Block a process,Wake a process,B,2,2020
+55,Theory of Computation,Halting problem of TM is?,Decidable,Undecidable,Regular,Context-free,B,2,2021
+56,Theory of Computation,CFG is accepted by?,FA,NFA,PDA,TM,C,2,2020
+57,Computer Networks,CSMA/CD is used in?,Wi-Fi,Ethernet,Bluetooth,Token Ring,B,2,2019
+58,Computer Networks,Which protocol works at network layer?,TCP,UDP,IP,SMTP,C,2,2021
+59,Digital Logic,A multiplexer is used to?,Perform addition,Perform subtraction,Select one of many inputs,Encode data,C,2,2020
+60,Digital Logic,The number of minterms in 3 variables is?,4,6,8,10,C,2,2021

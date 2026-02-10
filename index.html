@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Entry</title>
+  <link rel="stylesheet" href="admin1.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .approve-btn, .entry-buttons button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 90%;
+    }
+    .approve-btn:hover, .entry-buttons button:hover {
+      background: #0056b3;
+    }
+    .entry-buttons {
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form class="teacher-entry" id="teacherForm">
+      <label for="teacherName">Teacher Name</label>
+      <input type="text" id="teacherName" placeholder="Enter Teacher Name" required>
+
+      <label for="teacherID">Teacher ID</label>
+      <input type="text" id="teacherID" placeholder="Enter Teacher ID" required>
+
+      <button type="submit" class="approve-btn">Approve</button>
+    </form>
+
+    <div class="entry-buttons">
+      <button type="button" onclick="window.location.href='student-entry.html'">New Student Data Entry</button>
+      <button type="button" onclick="window.location.href='teacher-entry.html'">New Teacher Entry</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("teacherForm").addEventListener("submit", function(event){
+      event.preventDefault();
+
+      let name = document.getElementById("teacherName").value;
+      let id = document.getElementById("teacherID").value;
+
+      if(name && id){
+        // Redirect to Student Login page after approval
+        window.location.href = "student-login.html";
+      } else {
+        alert("Please fill in all fields.");
+      }
+    });
+  </script>
+</body>
+</html>

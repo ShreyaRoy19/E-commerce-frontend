@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Online Examination</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    /* Left area (questions) */
+    .main {
+      flex: 1;
+      padding: 20px 40px;
+    }
+
+    /* Right area (question number panel) */
+    .sidebar {
+      width: 200px;
+      background: #fff;
+      border-left: 2px solid #ccc;
+      padding: 20px;
+      box-shadow: -3px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h3 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    #questionNumbers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .qbtn {
+      width: 40px;
+      height: 40px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .qbtn:hover {
+      background: #0056b3;
+    }
+
+    .qbtn.answered {
+      background: #28a745;
+    }
+
+    .question {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .question.active {
+      display: block;
+    }
+
+    .question p {
+      font-weight: bold;
+    }
+
+    .options label {
+      display: block;
+      margin: 8px 0;
+      padding: 6px 10px;
+      border: 1px solid #007bff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .options input {
+      display: none;
+    }
+
+    .options input:checked + span {
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      padding: 5px 10px;
+    }
+
+    .submit-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #28a745;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .submit-btn:hover {
+      background: #218838;
+    }
+
+    #finalSubmit {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #finalSubmit:hover {
+      background: #c82333;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main">
+    <h1>Smart Online Examination</h1>
+    <div id="questions"></div>
+    <button id="finalSubmit" onclick="finalizeExam()">Finish Exam</button>
+    <div id="result"></div>
+  </div>
+
+  <div class="sidebar">
+    <h3>Question List</h3>
+    <div id="questionNumbers"></div>
+  </div>
+
+  <script>
+    let examData = [];
+    let userAnswers = {}; 
+    let score = 0;
+    let isExamFinished = false;
+
+    // Load dataset from JSON file
+    fetch("questions.json")
+      .then(response => response.json())
+      .then(data => {
+        examData = data;
+        const qNumContainer = document.getElementById("questionNumbers");
+        const qContainer = document.getElementById("questions");
+
+        data.forEach((q, index) => {
+          // Create Question Button (right side)
+          let qBtn = document.createElement("button");
+          qBtn.classList.add("qbtn");
+          qBtn.textContent = index + 1;
+          qBtn.onclick = () => showQuestion(index);
+          qNumContainer.appendChild(qBtn);
+
+          // Create Question
+          let div = document.createElement("div");
+          div.classList.add("question");
+          div.id = "q" + index;
+          div.innerHTML = `
+            <p>Q${index + 1}. ${q.Question}</p>
+            <div class="options">
+              <label><input type="radio" name="q${q.QID}" value="A"><span>${q.OptionA}</span></label>
+              <label><input type="radio" name="q${q.QID}" value="B"><span>${q.OptionB}</span></label>
+              <label><input type="radio" name="q${q.QID}" value="C"><span>${q.OptionC}</span></label>
+              <label><input type="radio" name="q${q.QID}" value="D"><span>${q.OptionD}</span></label>
+            </div>
+            <button class="submit-btn" onclick="submitAnswer(${index})">Submit Answer</button>
+          `;
+          qContainer.appendChild(div);
+        });
+
+        showQuestion(0);
+      });
+
+    // Show a question
+    function showQuestion(index) {
+      if (isExamFinished) return;
+      document.querySelectorAll(".question").forEach(q => q.classList.remove("active"));
+      document.getElementById("q" + index).classList.add("active");
+    }
+
+    // Submit each question (no correct/wrong shown)
+    function submitAnswer(index) {
+      if (isExamFinished) return;
+
+      const q = examData[index];
+      const selected = document.querySelector(`input[name="q${q.QID}"]:checked`);
+      const qBtn = document.querySelectorAll(".qbtn")[index];
+
+      if (!selected) {
+        alert("⚠ Please select an answer before submittinng");
+        return;
+      }
+
+      const ans = selected.value;
+      userAnswers[q.QID] = ans;
+
+      // Mark as answered
+      qBtn.classList.add("answered");
+
+      // Optionally store score
+      if (ans === q.Answer) score += q.Marks;
+
+      // Disable further submission for this question
+      document.querySelector(`#q${index} .submit-btn`).disabled = true;
+      document.querySelectorAll(`input[name="q${q.QID}"]`).forEach(el => el.disabled = true);
+    }
+
+    // Final Submission
+   function finalizeExam() {
+  if (isExamFinished) return;
+  isExamFinished = true;
+
+  // Calculate total marks
+  const totalMarks = examData.reduce((a, b) => a + b.Marks, 0);
+
+  // Disable all inputs and buttons
+  document.querySelectorAll(".submit-btn").forEach(btn => btn.disabled = true);
+  document.querySelectorAll(".question input").forEach(input => input.disabled = true);
+  document.getElementById("finalSubmit").disabled = true;
+
+  alert("✅ Exam submitted successfully!");
+
+  // Redirect to result page with score details
+  const resultURL = `result.html?score=${score}&total=${totalMarks}`;
+  window.location.href = resultURL;
+}
+
+
+    // Security Features
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "F5" || (e.ctrlKey && e.key.toLowerCase() === "r")) {
+        e.preventDefault();
+        alert("Page refresh is disabled during the exam!");
+      }
+      if (e.ctrlKey && ["c", "x", "u", "s"].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+        alert("Copying/Source viewing is disabled during the exam!");
+      }
+    });
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+      alert("Right-click is disabled during the exam!");
+    });
+
+    window.onbeforeunload = function () {
+      return "You cannot leave or refresh the exam page!";
+    };
+
+   
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exam Result</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .result-box { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); text-align: center; }
+    h1 { color: #28a745; }
+  </style>
+</head>
+<body>
+  <div class="result-box">
+    <h1>Your Score</h1>
+    <p id="score"></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const score = params.get("score");
+    const total = params.get("total");
+
+    document.getElementById("score").innerText =
+      `You scored ${score} out of ${total} (${(score/total*100).toFixed(2)}%)`;
+  </script>
+</body>
+</html>
